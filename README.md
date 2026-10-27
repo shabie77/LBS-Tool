@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 LBS Tool – B.Sc. Nursing Admission Analytics & Viability Platform
 
-## Getting Started
+A specialized educational data analytics and decision-support web application that standardizes multi-year state allotment records, calculates closing cutoffs across reservation quotas, and evaluates candidate admission viability across **180 nursing colleges in Kerala**.
 
-First, run the development server:
+🔗 **Live Application:**(https://lbs-tool.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📌 Problem Context & Objectives
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+State professional nursing admissions conducted by the LBS Centre for Science & Technology involve complex multi-round allotments across heterogeneous reservation categories. Prospective students and academic counselors face significant information asymmetry when trying to assess realistic admission chances based on their normalized 10+2 index scores.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Data Normalization:** Ingest, standardize, and clean multi-round historical allotment lists spanning two full admission cycles.
+* **Cutoff Benchmark Engineering:** Establish definitive institution-quota cutoff thresholds across all recognized merit categories.
+* **Rule-Based Decision Support:** Provide candidate-level viability classification (*Safe*, *Possible*, *Dream*) based on historical mark-delta buffers.
+* **Advisory Funnel Integration:** Route evaluated candidates directly to professional education counselors via automated lead structuring.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Technical Stack & Data Pipeline
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Data Engineering & Analysis:** Python, Pandas
+* **Frontend & Application Architecture:** Next.js, React, Tailwind CSS
+* **Deployment & Hosting:** Vercel
+* **Integration:** Automated WhatsApp URL schema for structured lead routing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📊 Analytical Scope & Metrics
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Dimension | Scope / Metric |
+| :--- | :--- |
+| **Allotment Records Processed** | **12,195 raw student allotment records** ingested from official state portals |
+| **Admission Cycles Covered** | **2024 and 2025** complete regular allotment rounds |
+| **Institutional Coverage** | **180 colleges** across all 14 districts of Kerala (Government, Aided, and Self-Financing) |
+| **Cutoff Benchmarks Derived** | **1,426 distinct college-quota closing cutoff baselines** |
+| **Quota Normalization** | Consolidated 22 raw allotment designations down to standardized statutory merit quotas (State Merit, EWS, Ezhava, Muslim, SC, ST, Latin Catholic, etc.) |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## ⚙️ Decision Logic: The Mark-Delta Model
+
+The application evaluates candidate viability deterministically using a mark-buffer formula:
+
+$$\text{Buffer} = \text{Candidate PCB Index Mark} - \text{Quota Historical Closing Cutoff}$$
+
+* **🟢 SAFE ($\text{Buffer} \ge +8$ marks):** Candidate's index score exceeds the historical closing threshold with a strong safety cushion.
+* **🟡 POSSIBLE ($-5 \le \text{Buffer} < +8$ marks):** Candidate sits within a competitive historical variance band.
+* **🔴 DREAM ($\text{Buffer} < -5$ marks):** High-reach institution where the historical closing cutoff significantly exceeds the candidate's current score.
+
+---
+
+## 🚀 Key Application Features
+
+1. **Deterministic Viability Classification:** Calculates real-time eligibility across all 180 institutions based on candidate PCB marks, category quota, and district preferences.
+2. **Curated 5-Choice Recommendation Set:** Automatically structures a balanced college application preference list anchoring top Government colleges alongside realistic private institutions.
+3. **Counselor Lead Dispatch:** Pre-formats the candidate's evaluated profile, score, and matched institutions into an automated dispatch message routed to educational consultancy advisors.
