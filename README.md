@@ -2,7 +2,7 @@
 
 A specialized educational data analytics and decision-support web application that standardizes multi-year state allotment records, calculates closing cutoffs across reservation quotas, and evaluates candidate admission viability across **180 nursing colleges in Kerala**.
 
-🔗 **Live Application:**(https://lbs-tool.vercel.app/)
+🔗 [Open Live Application](https://lbs-tool.vercel.app/)
 
 ---
 
